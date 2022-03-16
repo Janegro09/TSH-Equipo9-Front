@@ -8,6 +8,7 @@
 - [Blanco, Lisandro](https://github.com/liisandrob)
 - [Ojeda Pytel, Ailin](https://github.com/AilinI)
 - [Miquel, Diego Fernando](https://github.com/dfmiquel/)
+- [Nancy Barea](#)
 
 ## Desafio
 
@@ -18,6 +19,7 @@ To be announced...
 - [React.js](https://es.reactjs.org/)
 - [react-router-dom](https://v5.reactrouter.com/web/guides/quick-start)
 - [Chakra UI](https://chakra-ui.com/docs/getting-started)
+- [Axios](https://axios-http.com/docs/intro)
 
 ## Scripts disponibles
 

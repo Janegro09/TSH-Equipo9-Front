@@ -1,11 +1,11 @@
+import LoginContextProvider from "Context/LoginContext";
+import AppRouter from "Routers/AppRouter";
 
 function App() {
   return (
-    <div>
-      <header>
-        <h1>First commit</h1>
-      </header>
-    </div>
+    <LoginContextProvider>
+      <AppRouter />
+    </LoginContextProvider>
   );
 }
 
