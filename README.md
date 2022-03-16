@@ -45,3 +45,15 @@ $ npm i
 
 $ npm start
 ```
+
+## Archivos requeridos
+
+No se requiere la creación de archivos adicionales para el correcto funcionamiento de la aplicación
+
+## Archivos opcionales
+
+La aplicación por defecto utiliza la API de development, si se desea utilizar en ambiente local o productivo, crear un archivo .env en la raiz del repositorio con la siguiente variable de entorno:
+
+```
+REACT_APP_ENV=< local | development | production >
+```
