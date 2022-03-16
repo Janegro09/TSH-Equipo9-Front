@@ -14,7 +14,7 @@ import {
   Spinner
 } from '@chakra-ui/react';
 
-export default function SignUp({ checkInputs, changeFormMode, handleOnChange, dataToSend, hasError }) {
+export default function SignUp({ checkInputs, changeFormMode, handleOnChange, dataToSend, hasError, resetInputs }) {
 
   const { name, lastName, email, password, password2, avatar } = dataToSend;
 
@@ -38,8 +38,15 @@ export default function SignUp({ checkInputs, changeFormMode, handleOnChange, da
     if (Object.keys(errors).length !== 0 && (errors.name || errors.lastName)) setRegistrationStep(1)
     else {
       try {
-        const resp = await axios.post(Global.signup, dataToSend)
-        console.log(resp)
+        const dataForSignUp = {
+          firstname: name,
+          lastname: lastName,
+          avatar,
+          email,
+          password
+        };
+        await axios.post(Global.signup, dataForSignUp);
+        changeFormMode();
         setIsLoading(false);
       } catch (error) {
         console.log(error);

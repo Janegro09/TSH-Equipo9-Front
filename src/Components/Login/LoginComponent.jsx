@@ -13,35 +13,40 @@ export const Login = () => {
   const [hasError, setHasError] = useState({ name: false, lastName: false, email: false, password: false, password2: false });
   const [isRegistering, setIsRegistering] = useState(false)
 
-  const loginFunctions = {};
+  const loginFunctions = {
+    
+    handleOnChange: (e) => {
+      setDataToSend({
+        ...dataToSend,
+        [e.target.name]: e.target.value
+      });
+    },
 
-  loginFunctions.handleOnChange = (e) => {
-    setDataToSend({
-      ...dataToSend,
-      [e.target.name]: e.target.value
-    });
+    checkInputs: (dataToSend) => {
+      const errorsToRender = {}
+      if(isRegistering) {
+        const { email, password, password2, name, lastName } = dataToSend;
+        if(!name || name === '' || name.match(/^ *$/) !== null) errorsToRender.name = true;
+        if(!lastName || lastName === '' || lastName.match(/^ *$/) !== null) errorsToRender.lastName = true;
+        if(!email || email === '' || !email.includes('@') || !email.includes('.com')) errorsToRender.email = true;
+        if(!password || name === '' || password.match(/^ *$/) !== null) errorsToRender.password = true
+        else if (password !== password2) errorsToRender.password2 = true
+      } else {
+        const { email } = dataToSend;
+        if(!email || email === '' || !email.includes('@') || !email.includes('.com')) errorsToRender.email = true;
+      }
+      setHasError(errorsToRender);
+      return errorsToRender;
+    },
+
+    changeFormMode: () => {
+      setIsRegistering(!isRegistering);
+    }
+    
   };
 
-  loginFunctions.checkInputs = (dataToSend) => {
-    const errorsToRender = {}
-    if(isRegistering) {
-      const { email, password, password2, name, lastName } = dataToSend;
-      if(!name || name === '' || name.match(/^ *$/) !== null) errorsToRender.name = true;
-      if(!lastName || lastName === '' || lastName.match(/^ *$/) !== null) errorsToRender.lastName = true;
-      if(!email || email === '' || !email.includes('@') || !email.includes('.com')) errorsToRender.email = true;
-      if(!password || name === '' || password.match(/^ *$/) !== null) errorsToRender.password = true
-      else if (password !== password2) errorsToRender.password2 = true
-    } else {
-      const { email } = dataToSend;
-      if(!email || email === '' || !email.includes('@') || !email.includes('.com')) errorsToRender.email = true;
-    }
-    setHasError(errorsToRender);
-    return errorsToRender;
-  }
 
-  loginFunctions.changeFormMode = () => {
-    setIsRegistering(!isRegistering);
-  }
+
 
   return(
   <Center

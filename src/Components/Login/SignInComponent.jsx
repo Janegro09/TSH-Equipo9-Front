@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { LoginContext } from 'Context/LoginContext';
+import { useNavigate } from 'react-router-dom';
 import Global from 'Global';
 import {
   FormControl,
@@ -16,8 +18,11 @@ import axios from 'axios';
 export default function SignIn({ checkInputs, changeFormMode, handleOnChange, dataToSend, hasError }) {
 
   const { email, password } = dataToSend;
-
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const Login = useContext(LoginContext);
+  const { saveDataFromLogin } = Login;
 
   const signIn = async () => {
     setIsLoading(true);
@@ -25,10 +30,10 @@ export default function SignIn({ checkInputs, changeFormMode, handleOnChange, da
     if (Object.keys(errors).length !== 0) return setIsLoading(false)
     else {
       try {
-        console.log(Global.login)
-        const response = await axios.post(Global.login, {email, password})
-        console.log(response)
+        const response = await axios.post(Global.login, {email, password});
+        saveDataFromLogin(response.data)
         setIsLoading(false);
+        navigate('/home');
       } catch (error) {
         console.log(error)
         setIsLoading(false);

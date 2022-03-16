@@ -1,42 +1,34 @@
-import { Stack, Menu, Button, MenuItem } from '@chakra-ui/react';
+import { Stack, Menu, MenuItem } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-import { LoginContext } from 'Context/LoginContext';
-import React, { useContext } from 'react';
 
 export const NavBar = () => {
-
-  const Login = useContext(LoginContext)
-  const { isLogged } = Login
   
   return (
-    <header>
+    <nav>
       <Stack
-      direction={{base: 'column', sm:'row'}}
+      direction={{base: 'row', sm:'row'}}
       alignItems={'center'} 
       justifyContent={'space-between'}
       >
         <Menu>
-          <Link to='/'>
+          <Link to='/home'>
             <MenuItem>
-                asd
+                Música
             </MenuItem>
           </Link>
-          <Link to='/'>
+          <Link to='/home'>
             <MenuItem>
-                asd2
+                Trailers
             </MenuItem>
           </Link>
-          <Link to='/'>
+          <Link to='/home'>
             <MenuItem>
-                asd3
+                Eventos
             </MenuItem>
           </Link>
         </Menu>
-        <Button>
-          { isLogged ? 'ESTA LOGEADO' : 'No esta logeado'}
-        </Button>
       </Stack>
-    </header>
+    </nav>
   )
 }
